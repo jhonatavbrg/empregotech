@@ -1,45 +1,42 @@
-const offset = 0;
-const limit = 10;
-const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
+import { fetchApi } from './pokeApi.js';
 
-const createPokemonLi = (pokemon) => {
-    const firstLetterUpperCase = pokemon.name.charAt(0).toUpperCase();
-    const remainingLetters = pokemon.name.slice(1);
+const formatPokemonOrder = (id) => {
+    if(typeof(id) !== 'number') return `#000`;
+    if(id.toString().length === 1) return `#00${ id }`;
+    else if(id.toString().length === 2) return `#0${ id }`;
+
+    return `#${ id }`;
+};
+
+const createPokemonTypeLi = (types) => types.map(typeSlot => `<li>${ typeSlot.type.name }</li>`).join('');
+
+const createPokemonCard = (pokemon) => {
+    const { name, id, types } = pokemon; 
+
+    const firstLetterUpperCase = name.charAt(0).toUpperCase();
+    const remainingLetters = name.slice(1);
     const capitalize = firstLetterUpperCase + remainingLetters;
 
     return `
             <li class="pokemon">
-                <span class="number">#001</span>
-                <span class="name">${capitalize}</span>
+                <span class="number">${ formatPokemonOrder(id) }</span>
+                <span class="name">${ capitalize }</span>
 
                 <div class="detail">
                     <ol class="types">
-                        <li>grass</li>
-                        <li>poison</li>
+                        ${ createPokemonTypeLi(types) }
                     </ol>
-                    <img src="https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/1.svg" alt="${capitalize}" />
+                    <img src="https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${ id }.svg" alt="${ capitalize }" />
                 </div>
 
             </li>
         `;
 };
 
-const fetchApi = async (url) => {
-    const response = await fetch(url);
-    const data = await response.json();
-
-    return data.results;
-};
-
-fetchApi(url)
-    .then(pokemons => {
+fetchApi()
+    .then((pokemons = []) => {
         const orderedList = document.querySelector('.pokemons');
-        console.log(orderedList);
 
-        pokemons.forEach(el => {
-            orderedList.innerHTML += createPokemonLi(el);
-        });
+        orderedList.innerHTML += pokemons.map(createPokemonCard).join('');
     });
-
-
 
