@@ -1,6 +1,6 @@
 import { fetchApi } from './pokeApi.js';
 
-const formatPokemonOrder = (id) => {
+const formatPokemonId = (id) => {
     if(typeof(id) !== 'number') return `#000`;
     if(id.toString().length === 1) return `#00${ id }`;
     else if(id.toString().length === 2) return `#0${ id }`;
@@ -8,25 +8,25 @@ const formatPokemonOrder = (id) => {
     return `#${ id }`;
 };
 
-const createPokemonTypeLi = (types) => types.map(typeSlot => `<li>${ typeSlot.type.name }</li>`).join('');
+const capitalizePokemonName = (pokeName) => {
+    const firstLetterUpperCase = pokeName.charAt(0).toUpperCase();
+    const remainingLetters = pokeName.slice(1);
+    return firstLetterUpperCase + remainingLetters;
+}
 
 const createPokemonCard = (pokemon) => {
-    const { name, id, types } = pokemon; 
-
-    const firstLetterUpperCase = name.charAt(0).toUpperCase();
-    const remainingLetters = name.slice(1);
-    const capitalize = firstLetterUpperCase + remainingLetters;
+    const { name, id, types, image, backgroundColor } = pokemon;
 
     return `
-            <li class="pokemon">
-                <span class="number">${ formatPokemonOrder(id) }</span>
-                <span class="name">${ capitalize }</span>
+            <li class="pokemon ${ backgroundColor }">
+                <span class="number">${ formatPokemonId(id) }</span>
+                <span class="name">${ capitalizePokemonName(name) }</span>
 
                 <div class="detail">
                     <ol class="types">
-                        ${ createPokemonTypeLi(types) }
+                        ${ types.map(type => `<li>${ type }</li>`).join('') }
                     </ol>
-                    <img src="https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${ id }.svg" alt="${ capitalize }" />
+                    <img src=${ image } alt="${ capitalizePokemonName(name) }" />
                 </div>
 
             </li>
