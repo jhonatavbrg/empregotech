@@ -9,7 +9,7 @@
 <body background="./assets/images/background.jpg" style="background-size: cover" link="#000" alink="#017bf5" vlink="#000">
     <div class="main">
         <p align="center">
-        <img src="./assets/images/ragnarok.svg" height="150" width="250" />
+            <img src="./assets/images/ragnarok.svg" align="center" height="150" width="250" alt="logo-ragnarok" />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -76,7 +76,55 @@
                 </td>
             </tr>
         </table>
-        
+    </div>
+
+
+    <br><br><br><br><br><br><br>
+    <div class="contact">
+        <hr color="#000" width="20%">
+        <p align="center">
+            <font face="sans-serif" color="#2ECC17" size="6">Contact US</font>
+        </p>
+        <hr color="#000" width="20%">
+
+        <br><br><br>
+        <form name="f1" id="contact-form">
+            <table align="center" cellpadding="10" cellspacing="15" border="1">
+                <tr>
+                    <td>
+                        <input type="text" name="first-name" placeholder="First Name" 
+                            required="required" />
+                    </td>
+                    <td>
+                        <input type="text" name="second-name" placeholder="Second Name" 
+                            required="required" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="email" name="email" placeholder="Email"
+                            required="required" />
+                    </td>
+                    <td>
+                        <input type="text" name="subject" placeholder="Subject"
+                            required="required" />
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <textarea name="message" placeholder="Enter Your Message" 
+                            required="required" minlength="20" maxlength="100"
+                            rows="3" cols="52" style="resize: none"></textarea>
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <input type="submit" name="contact-submit" form="contact-submit"
+                            value="Send">
+                    </th>
+                </tr>
+            </table>
+        </form>
     </div>
 </body>
 </html>
