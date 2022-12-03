@@ -151,8 +151,7 @@
     display: flex;
     align-items: center;
     font-size: .625rem;
-    margin: 2px;
-    border: 1px solid black;
+    margin: 0.8px;
     border-radius: 15px;
 }
 
