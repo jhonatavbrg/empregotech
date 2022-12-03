@@ -147,6 +147,37 @@
     text-transform: capitalize;
 }
 
+.container-stats {
+    display: flex;
+    align-items: center;
+    font-size: .625rem;
+    margin: 2px;
+    border: 1px solid black;
+    border-radius: 15px;
+}
+
+.stats {
+    display: flex;
+    align-items: center;
+    width: 65%;
+    max-width: 100%;
+    text-align: center;
+    border-radius: 15px;
+    padding: 6px;
+    white-space: nowrap;
+    filter: brightness(0.7);
+    text-transform: capitalize;
+}
+
+.container-stats .stat-number {
+    position: absolute;
+    margin-left: 104px;
+}
+
+.container-stats .stat-name {
+    position: absolute;
+}
+
 @media screen and (min-width: 380px) {
     .pokemons {
         grid-template-columns: 1fr 1fr;

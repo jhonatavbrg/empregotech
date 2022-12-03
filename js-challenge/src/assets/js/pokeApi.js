@@ -6,7 +6,16 @@ const createPokemonDetail = (pokeDetails) => {
     pokemon.id = pokeDetails.id;
     pokemon.name = pokeDetails.name;
     const types = pokeDetails.types.map(typeSlot => typeSlot.type.name);
+    const stats = pokeDetails.stats.map(baseStat => {
+        const { stat: { name }, base_stat } = baseStat;
+        const statsObj = {};
+
+        statsObj[name] = base_stat;
+
+        return statsObj;
+    });
     pokemon.types = types;
+    pokemon.stats = stats;
     pokemon.image = `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${ pokeDetails.id }.svg`;
     const [ type ] = types;
     pokemon.backgroundColor = type;

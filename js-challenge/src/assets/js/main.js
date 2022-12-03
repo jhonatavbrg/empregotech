@@ -9,7 +9,7 @@ const formatPokemonId = (id) => {
 };
 
 const createPokemonCard = (pokemon) => {
-    const { name, id, types, image, backgroundColor } = pokemon;
+    const { name, id, types, stats, image, backgroundColor } = pokemon;
 
     return `
             <li class="pokemon ${ backgroundColor }">
@@ -23,17 +23,27 @@ const createPokemonCard = (pokemon) => {
                     <img src=${ image } alt="${ name }" />
                 </div>
 
+                ${ stats.map(stat => {
+                    return `<div class="container-stats">
+                                <span class="stat-number">${ Object.values(stat) }/255</span>
+                                <div class="stats ${ backgroundColor }" style="width:${ Math.round((Object.values(stat) / 255) * 100) }%">
+                                    <span class="stat-name">${Object.keys(stat)}</span>
+                                </div>
+                            </div>
+                            `;
+                }).join('') }
+
             </li>
-        `;
+            `;
 };
 
 
-const orderedList = document.querySelector('.pokemons');
+const orderedList = document.querySelectorAll('.pokemons');
 
 const handlePokemonLi = async (offset = 0, limit = 10) => {
     const pokemons = await fetchApi(offset, limit) || [];
 
-    orderedList.innerHTML += pokemons.map(createPokemonCard).join('');
+    orderedList[0].innerHTML += pokemons.map(createPokemonCard).join('');
 };
 
 handlePokemonLi();
