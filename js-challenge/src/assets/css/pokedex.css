@@ -76,6 +76,7 @@ body {
     background: url('../images/pokemon.jpg') no-repeat;
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
 }
 
 .pokemons {
@@ -173,6 +174,7 @@ button#loadMoreBtn:hover {
     align-items: center;
     font-size: .625rem;
     margin: .125rem;
+    border: 1px solid rgba(0, 0, 0, .2);
     border-radius: 15px;
 }
 
@@ -214,8 +216,8 @@ button#loadMoreBtn:hover {
 
 #logo-pokedex {
     display: flex;
-    width: 8rem;
-    height: 8rem;
+    justify-content: center;
+    height: 6rem;
     margin: .625rem;
 }
 
