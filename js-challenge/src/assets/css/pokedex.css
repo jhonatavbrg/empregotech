@@ -104,7 +104,6 @@ body {
 
 .pokemon .name {
     color: #FFF;
-    margin-bottom: 0;
     text-transform: capitalize;
 }
 
@@ -179,15 +178,9 @@ button#loadMoreBtn:hover {
 }
 
 .stats {
-    display: flex;
-    align-items: center;
-    max-width: 100%;
-    text-align: center;
     border-radius: 15px;
     padding: 8px;
-    white-space: nowrap;
     filter: brightness(0.7);
-    text-transform: capitalize;
 }
 
 .container-stats .stat-number-s1 {
@@ -210,7 +203,8 @@ button#loadMoreBtn:hover {
 
 .container-stats .stat-name {
     position: absolute;
-    margin: .125rem 0 0 0;
+    z-index: 1000;
+    margin: .125rem 0 0 8px;
     opacity: .75;
 }
 

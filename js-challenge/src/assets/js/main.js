@@ -23,22 +23,25 @@ const createPokemonCard = (pokemon) => {
                     <img src=${ image } alt="${ name }" />
                 </div>
 
-                ${ stats.map(stat => {
-                    const sizeAttribute = Object.values(stat).toString().length;
-                    const attribute = Object.values(stat);
+                <div>
 
-                    return `<div class="container-stats">
-                                <span class=${ sizeAttribute === 3 ? 'stat-number-s3' : 
-                                        sizeAttribute === 2 ? 'stat-number-s2' :
-                                        sizeAttribute === 1 ? 'stat-number-s1' : 0 }>
-                                    ${ attribute }/255
-                                </span>
-                                <div class="stats ${ backgroundColor }" style="width:${ Math.round(( attribute / 255) * 100) }%">
+                    ${ stats.map(stat => {
+                        const sizeAttribute = Object.values(stat).toString().length;
+                        const attribute = Object.values(stat);
+
+                        return `<div class="container-stats">
+                                    <span class=${ sizeAttribute === 3 ? 'stat-number-s3' : 
+                                            sizeAttribute === 2 ? 'stat-number-s2' :
+                                            sizeAttribute === 1 ? 'stat-number-s1' : 0 }>
+                                        ${ attribute }/255
+                                    </span>
                                     <span class="stat-name">${Object.keys(stat)}</span>
+                                    <div class="stats ${ backgroundColor }" style="width:${ Math.round(( attribute / 255) * 100) }%">
+                                    </div>
                                 </div>
-                            </div>
-                            `;
-                }).join('') }
+                                `;
+                    }).join('') }
+                </div>
 
             </li>
             `;
