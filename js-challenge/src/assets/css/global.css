@@ -15,7 +15,11 @@ body {
     width: 100vw;
     height: 100vh;
     padding: 1rem;
-    background-color: #FFF;
+    background-color: rgba(0, 0, 0, .4);
+}
+
+button#loadMoreBtn {
+    background: none;
 }
 
 @media screen and (min-width: 992px) {
