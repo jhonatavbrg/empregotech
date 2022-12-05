@@ -46,31 +46,43 @@ const createPokemonCard = (pokemon) => {
 
 
 const orderedList = document.querySelectorAll('.pokemons');
+let countCallHandlePokemon = 0;
 
 const handlePokemonLi = async (offset = 0, limit = 10) => {
+    countCallHandlePokemon++;
     const pokemons = await fetchApi(offset, limit) || [];
 
     orderedList[0].innerHTML += pokemons.map(createPokemonCard).join('');
+
+    const liPokemon = document.querySelectorAll('.pokemon');
+    if(countCallHandlePokemon > 1) {
+        liPokemon[liPokemon.length - 1].scrollIntoView({behavior: "smooth"});
+    }
+
 };
 
 handlePokemonLi();
 
 const loadMoreBtn = document.querySelector('#loadMoreBtn');
+let offset = 5;
 
-const loadMorePokemons = (event) => {
-    let limit = 0;
-    let elements = event.currentTarget;
-    elements.clicks = (elements.clicks || 1) + 1;
-    const { clicks } = elements;
-    
-    orderedList.childElementCount === 150 ? limit = 1 : limit = 5;
+const loadMorePokemons = () => {
+    const limit = 5;
+    offset += limit;
+    const maxPokemonRender = 151;
 
-    if(limit === 1) {
+    const limitPokemonsRender = offset + limit;
+    if(limitPokemonsRender >= maxPokemonRender) {
+        const newLimit = limit - (limitPokemonsRender - maxPokemonRender);
+
+        handlePokemonLi(offset, newLimit);
+        loadMoreBtn.id = 'btnDisabled';
         loadMoreBtn.setAttribute('disabled', '');
         loadMoreBtn.removeEventListener('click', loadMorePokemons);
-    } 
+    }else {
+        handlePokemonLi(offset, limit);
+    }
 
-    handlePokemonLi((5 * clicks), limit);
 };
 
 loadMoreBtn.addEventListener('click', loadMorePokemons);
